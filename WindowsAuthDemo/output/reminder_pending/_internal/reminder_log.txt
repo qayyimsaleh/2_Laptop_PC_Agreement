@@ -1,0 +1,14 @@
+2026-02-11 11:37:11 [INFO] ============================================================
+2026-02-11 11:37:11 [INFO] Laptop/PC Agreement - Pending Reminder
+2026-02-11 11:37:11 [INFO] Run time: 2026-02-11 11:37:11
+2026-02-11 11:37:11 [INFO] ============================================================
+2026-02-11 11:37:11 [INFO] Connecting to IOIPCNINTRANET\INTRANET / hardware_agreement ...
+2026-02-11 11:37:11 [INFO] Connected.
+2026-02-11 11:37:11 [INFO] Found 2 pending agreement(s)
+2026-02-11 11:37:11 [INFO] ----------------------------------------
+2026-02-11 11:37:13 [INFO]   [AGREEMENT-20260211-8996] Sent -> TO: qayyim@ioioleo.com | CC: qayyim@ioioleo.com, qayyim@ioioleo.com
+2026-02-11 11:37:14 [INFO]   [AGREEMENT-20260211-8819] Sent -> TO: qayyim@ioioleo.com | CC: qayyim@ioioleo.com, qayyim@ioioleo.com
+2026-02-11 11:37:14 [INFO] ----------------------------------------
+2026-02-11 11:37:14 [INFO] 
+2026-02-11 11:37:14 [INFO] DONE | Pending: 2 | Sent: 2 | Failed: 0
+2026-02-11 11:37:14 [INFO] ============================================================

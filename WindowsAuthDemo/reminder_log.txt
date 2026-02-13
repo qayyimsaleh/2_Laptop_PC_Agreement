@@ -1,0 +1,28 @@
+2026-02-11 11:27:55 [INFO] ============================================================
+2026-02-11 11:27:55 [INFO] Hardware Agreement - Pending Reminder
+2026-02-11 11:27:55 [INFO] Run time: 2026-02-11 11:27:55
+2026-02-11 11:27:55 [INFO] ============================================================
+2026-02-11 11:27:55 [INFO] Connecting to IOIPCNINTRANET\INTRANET / hardware_agreement ...
+2026-02-11 11:27:55 [INFO] Connected.
+2026-02-11 11:27:56 [INFO] Found 2 pending agreement(s)
+2026-02-11 11:27:56 [INFO] ----------------------------------------
+2026-02-11 11:27:57 [INFO]   [AGREEMENT-20260211-8996] Sent -> TO: qayyim@ioioleo.com | CC: qayyim@ioioleo.com, qayyim@ioioleo.com
+2026-02-11 11:27:59 [INFO]   [AGREEMENT-20260211-8819] Sent -> TO: qayyim@ioioleo.com | CC: qayyim@ioioleo.com, qayyim@ioioleo.com
+2026-02-11 11:27:59 [INFO] ----------------------------------------
+2026-02-11 11:27:59 [INFO] 
+2026-02-11 11:27:59 [INFO] DONE | Pending: 2 | Sent: 2 | Failed: 0
+2026-02-11 11:27:59 [INFO] ============================================================
+2026-02-11 11:30:49 [INFO] ============================================================
+2026-02-11 11:30:49 [INFO] Laptop/PC Agreement - Pending Reminder
+2026-02-11 11:30:49 [INFO] Run time: 2026-02-11 11:30:49
+2026-02-11 11:30:49 [INFO] ============================================================
+2026-02-11 11:30:49 [INFO] Connecting to IOIPCNINTRANET\INTRANET / hardware_agreement ...
+2026-02-11 11:30:50 [INFO] Connected.
+2026-02-11 11:30:50 [INFO] Found 2 pending agreement(s)
+2026-02-11 11:30:50 [INFO] ----------------------------------------
+2026-02-11 11:30:51 [INFO]   [AGREEMENT-20260211-8996] Sent -> TO: qayyim@ioioleo.com | CC: qayyim@ioioleo.com, qayyim@ioioleo.com
+2026-02-11 11:30:52 [INFO]   [AGREEMENT-20260211-8819] Sent -> TO: qayyim@ioioleo.com | CC: qayyim@ioioleo.com, qayyim@ioioleo.com
+2026-02-11 11:30:53 [INFO] ----------------------------------------
+2026-02-11 11:30:53 [INFO] 
+2026-02-11 11:30:53 [INFO] DONE | Pending: 2 | Sent: 2 | Failed: 0
+2026-02-11 11:30:53 [INFO] ============================================================
