@@ -131,6 +131,4 @@ The application implements multiple layers of security:
 4. Verify `debug="false"` is set in the `<compilation>` tag.
 5. Ensure the IIS application pool identity has access to the database.
 
-## License
 
-Internal/organizational use. Add a license file as appropriate for your distribution needs.
