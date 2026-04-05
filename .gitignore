@@ -264,6 +264,10 @@ __pycache__/
 .env
 *.env
 
+# Web.config contains real DB credentials and SMTP config — keep local only
+# Use Web.config.example as the safe committed reference
+WindowsAuthDemo/Web.config
+
 # Compiled Python output / PyInstaller artifacts
 output/
 dist/
