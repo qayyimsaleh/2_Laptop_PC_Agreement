@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laptop/Desktop Agreement Portal — User Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0f1117; --paper:#f5f3ee; --cream:#ede9e1; --line:#cbc5b8;
+  --admin:#1a4fd6; --admin-l:#dce8ff;
+  --emp:#0d8a5e; --emp-l:#d0f5e8;
+  --done:#5b21b6; --done-l:#ede9fe;
+  --warn:#c05c00; --warn-l:#ffecd9;
+  --shadow:2px 2px 0 var(--ink);
+  --p-primary:#3b6cf4; --p-sidebar:#1e2235; --p-card:#fff;
+  --p-border:#dde3ed; --p-text:#1a202c; --p-sub:#64748b;
+  --p-grad:linear-gradient(135deg,#3b6cf4 0%,#6d28d9 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* HEADER */
+header{background:var(--ink);color:var(--paper);padding:56px 48px 48px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:2px solid rgba(255,255,255,.07);border-radius:50%}
+.header-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 12px;border-radius:2px;margin-bottom:20px}
+header h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.08;max-width:640px;margin-bottom:16px}
+header h1 span{color:#7eb3ff}
+header p{font-size:1rem;color:rgba(245,243,238,.7);max-width:520px;line-height:1.7}
+
+/* LAYOUT */
+main{max-width:1080px;margin:0 auto;padding:56px 32px 80px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,17,23,.4);margin-bottom:10px}
+.sec-title{font-size:1.7rem;font-weight:700;margin-bottom:32px}
+
+/* PERSONAS */
+.personas{display:flex;gap:16px;margin-bottom:48px;flex-wrap:wrap}
+.persona{display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:4px;border:1.5px solid var(--ink);box-shadow:var(--shadow);font-weight:600;font-size:.88rem}
+.persona.admin{background:var(--admin-l)}.persona.emp{background:var(--emp-l)}
+.pdot{width:9px;height:9px;border-radius:50%}
+.persona.admin .pdot{background:var(--admin)}.persona.emp .pdot{background:var(--emp)}
+
+/* ROLE CARDS */
+.roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:56px}
+@media(max-width:640px){.roles-grid{grid-template-columns:1fr}}
+.rc{border:2px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.rc-h{padding:15px 20px;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:10px}
+.rc.admin .rc-h{background:var(--admin-l);color:var(--admin)}.rc.emp .rc-h{background:var(--emp-l);color:var(--emp)}
+.rc-b{padding:14px 20px}
+.ri{display:flex;gap:10px;font-size:.87rem;line-height:1.55;color:rgba(15,17,23,.75);padding:7px 0;border-bottom:1px solid var(--cream)}
+.ri:last-child{border-bottom:none}
+
+/* STATUS FLOW */
+.sf{background:var(--ink);border-radius:8px;padding:28px;margin-bottom:64px;overflow-x:auto}
+.sf h3{color:var(--paper);font-size:.75rem;font-weight:600;margin-bottom:20px;font-family:'DM Mono',monospace;letter-spacing:.08em;opacity:.45;text-transform:uppercase}
+.sfr{display:flex;align-items:center;flex-wrap:nowrap;min-width:max-content}
+.sfn{display:flex;flex-direction:column;align-items:center;gap:5px}
+.sfb{padding:8px 16px;border-radius:4px;font-family:'DM Mono',monospace;font-size:.73rem;font-weight:500;white-space:nowrap}
+.sfb.d{background:#2a2a2a;color:#aaa;border:1px solid #444}
+.sfb.p{background:#3a2200;color:#ffb347;border:1px solid #6b4400}
+.sfb.ag{background:#002a1a;color:#4ee0a0;border:1px solid #005c38}
+.sfb.c{background:#1c0050;color:#c4b5fd;border:1px solid #3d1a8a}
+.sfb.ar{background:#1e1e1e;color:#888;border:1px solid #444}
+.sfl{font-family:'DM Mono',monospace;font-size:.56rem;color:rgba(245,243,238,.28);letter-spacing:.05em;text-transform:uppercase}
+.sfa{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 8px}
+.sfal{height:2px;width:38px;background:rgba(255,255,255,.12);position:relative}
+.sfal::after{content:'▶';position:absolute;right:-8px;top:-7px;font-size:.63rem;color:rgba(255,255,255,.2)}
+.sfat{font-family:'DM Mono',monospace;font-size:.54rem;color:rgba(245,243,238,.26);white-space:nowrap}
+.sf-br{margin-top:20px;padding-left:20px;border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:7px}
+.sf-bi{font-family:'DM Mono',monospace;font-size:.68rem;color:rgba(245,243,238,.38);display:flex;align-items:center;gap:9px}
+
+/* STEP FLOW */
+.flow{position:relative;margin-bottom:72px}
+.fs{display:grid;grid-template-columns:54px 1fr;gap:0 22px;position:relative}
+.fs:not(:last-child) .sln{position:absolute;left:26px;top:54px;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,var(--line) 0,var(--line) 6px,transparent 6px,transparent 12px)}
+.snc{display:flex;flex-direction:column;align-items:center}
+.sn{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0;position:relative;z-index:1}
+.sn.a{background:var(--admin-l);color:var(--admin);border-color:var(--admin)}
+.sn.e{background:var(--emp-l);color:var(--emp);border-color:var(--emp)}
+.sn.dn{background:var(--done-l);color:var(--done);border-color:var(--done)}
+.sb{background:#fff;border:1.5px solid var(--ink);border-radius:8px;box-shadow:var(--shadow);padding:24px 26px;margin-bottom:22px}
+.sw{font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:2px 8px;border-radius:2px;margin-bottom:7px;display:inline-block}
+.sw.a{background:var(--admin-l);color:var(--admin)}.sw.e{background:var(--emp-l);color:var(--emp)}.sw.sys{background:var(--cream);color:#555}
+.sh{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.st{font-size:1.1rem;font-weight:700;line-height:1.3}
+.sd{font-size:.92rem;line-height:1.75;color:rgba(15,17,23,.7);margin-bottom:14px}
+.sl{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.sl li{display:flex;align-items:flex-start;gap:9px;font-size:.87rem;line-height:1.55;color:rgba(15,17,23,.75)}
+.sl li::before{content:'→';font-weight:700;flex-shrink:0;margin-top:1px}
+.sl.chk li::before{content:'✓';color:var(--emp)}
+.sft{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--cream);flex-wrap:wrap}
+.fbl{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(15,17,23,.4)}
+
+/* PILL */
+.pill{display:inline-block;font-family:'DM Mono',monospace;font-size:.67rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1.5px solid currentColor;white-space:nowrap}
+.pill.d{color:#8a6500;background:#fef9e7}.pill.p{color:#1e56c2;background:#eff6ff}
+.pill.ag{color:#0d7a56;background:#d1fae5}.pill.c{color:var(--done);background:var(--done-l)}
+.pill.ar{color:#555;background:#e5e5e5}
+
+/* EMAIL CALLOUT */
+.ec{background:#fffbf0;border:1.5px dashed #d4a820;border-radius:6px;padding:13px 17px;margin-top:13px;display:flex;gap:11px;align-items:flex-start;font-size:.86rem;line-height:1.6;color:#6b4c00}
+.ec .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+
+/* BRANCH BLOCK */
+.bb{background:var(--paper);border:1.5px solid var(--line);border-radius:6px;padding:16px 18px;margin-top:14px}
+.bb h4{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;color:rgba(15,17,23,.48);font-family:'DM Mono',monospace}
+.brs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.brs{grid-template-columns:1fr}}
+.br{background:#fff;border:1.5px solid var(--ink);border-radius:4px;padding:12px 14px;font-size:.84rem;line-height:1.55}
+.brl{font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+
+/* ─────────────────── MOCKUP SYSTEM ─────────────────── */
+.mt{display:flex;align-items:center;gap:10px;padding:9px 15px;background:linear-gradient(135deg,#eff6ff,#f5f3ff);border:1.5px solid #c7d2fe;border-bottom:none;border-radius:6px 6px 0 0;margin-top:18px;user-select:none}
+.mt:hover{background:linear-gradient(135deg,#dbeafe,#ede9fe)}
+.mt-ico{width:26px;height:26px;border-radius:50%;background:var(--p-grad);display:flex;align-items:center;justify-content:center;color:white;font-size:.8rem;flex-shrink:0}
+.mt-txt{font-size:.87rem;font-weight:600;color:var(--admin)}
+.mt-arr{margin-left:auto;font-size:.72rem;color:var(--admin);transition:transform .22s}
+.mt.open .mt-arr{transform:rotate(180deg)}
+.mw{display:block;margin-top:0;border:1.5px solid #c7d2fe;border-radius:0 0 8px 8px;overflow:hidden;box-shadow:0 4px 20px rgba(59,108,244,.1)}
+
+/* portal shell */
+.portal{display:flex;background:#eef2f9;font-family:'Sora',sans-serif;min-height:400px}
+.ps{width:190px;flex-shrink:0;background:var(--p-sidebar);padding:14px 0;display:flex;flex-direction:column}
+.ps-logo{padding:12px 14px 16px;display:flex;align-items:center;gap:8px}
+.ps-logo-ico{width:30px;height:30px;border-radius:7px;background:var(--p-grad);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.ps-logo-txt{font-size:.72rem;font-weight:700;color:white;line-height:1.25}
+.pni{display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:.72rem;font-weight:500;color:#8896b0;white-space:nowrap}
+.pni:hover{background:rgba(255,255,255,.05);color:#c8d0e0}
+.pni.act{background:var(--p-grad);color:white}
+.pni .ni{width:15px;text-align:center;font-size:.8rem}
+.ps-sep{height:1px;background:rgba(255,255,255,.07);margin:8px 0}
+
+.pm{flex:1;overflow:auto;display:flex;flex-direction:column}
+.ptb{background:white;border-bottom:1px solid var(--p-border);padding:9px 18px;display:flex;align-items:center;justify-content:space-between}
+.ptb-t{font-size:.88rem;font-weight:700;color:var(--p-text)}
+.ptb-u{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--p-sub)}
+.pav{width:26px;height:26px;border-radius:50%;background:var(--p-grad);display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700}
+
+.pc{padding:14px 18px;flex:1}
+.pph{background:white;border-radius:9px;padding:14px 18px;margin-bottom:12px;border:1px solid var(--p-border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.pph h2{font-size:.95rem;font-weight:800;color:var(--p-text);margin-bottom:2px}
+.pph p{font-size:.68rem;color:var(--p-sub)}
+.pph .agn{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--p-primary);font-weight:600;margin-top:4px}
+
+/* phase container */
+.ppc{background:white;border-radius:9px;border:1px solid var(--p-border);margin-bottom:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.pph2{padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--p-border)}
+.ppb{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-direction:column;flex-shrink:0}
+.ppb .pn{font-family:'DM Mono',monospace;font-size:.55rem;font-weight:600;opacity:.65;line-height:1;text-transform:uppercase;letter-spacing:.03em}
+.ppb .pi{font-size:.95rem;line-height:1}
+.ph-raise .ppb{background:linear-gradient(135deg,rgba(59,108,244,.15),rgba(109,40,217,.1));color:var(--p-primary)}
+.ph-agree .ppb{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.1));color:#059669}
+.ph-verify .ppb{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(217,119,6,.1));color:#d97706}
+.ppt{font-size:.82rem;font-weight:700;color:var(--p-text)}
+.pps{font-size:.66rem;color:var(--p-sub);margin-top:1px}
+.pcon{padding:13px 16px}
+
+/* form */
+.pfg{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
+.pfg.c3{grid-template-columns:1fr 1fr 1fr}
+.pfg.c1{grid-template-columns:1fr}
+.pf{display:flex;flex-direction:column;gap:3px}
+.pl{font-size:.64rem;font-weight:600;color:var(--p-text)}
+.pl .req{color:#ef4444;margin-left:2px}
+.pi2{border:1.5px solid var(--p-border);border-radius:5px;padding:6px 9px;font-size:.7rem;color:var(--p-text);background:white;font-family:'Sora',sans-serif;width:100%}
+.pi2.fi{background:#f8faff;border-color:#c7d2fe;color:var(--p-primary)}
+.pi2.ro{background:#f1f5f9;border-color:#e2e8f0;color:var(--p-sub)}
+.pi2.hi{border-color:#f59e0b;background:#fffbeb;color:#92400e;font-weight:600}
+.psel{border:1.5px solid var(--p-border);border-radius:5px;padding:6px 9px;font-size:.7rem;color:var(--p-text);background:white;font-family:'Sora',sans-serif;width:100%}
+.psel.fi{background:#f8faff;border-color:#c7d2fe;color:var(--p-primary)}
+
+/* accessories */
+.pag{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
+.pai{display:flex;align-items:center;gap:6px;padding:7px 9px;border:1px solid var(--p-border);border-radius:5px;font-size:.68rem;color:var(--p-text);background:#f8fafc}
+.pai.ck{background:#f0fdf4;border-color:#86efac;color:#166534}
+.pchk{width:13px;height:13px;border-radius:2px;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.55rem}
+.pchk.ck{background:#22c55e;border-color:#22c55e;color:white}
+
+/* section sub-header */
+.psh{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.psi{width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.psi.bl{background:var(--p-grad)}.psi.gr{background:linear-gradient(135deg,#10b981,#059669)}.psi.am{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.psit{font-size:.76rem;font-weight:700;color:var(--p-text)}
+.psis{font-size:.62rem;color:var(--p-sub)}
+
+/* buttons */
+.pbr{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;padding-top:11px;border-top:1px solid var(--p-border)}
+.pb{padding:7px 16px;border-radius:7px;font-size:.71rem;font-weight:700;border:none;font-family:'Sora',sans-serif;white-space:nowrap}
+.pb.pr{background:var(--p-grad);color:white;box-shadow:0 2px 8px rgba(59,108,244,.25)}
+.pb.ps2{background:linear-gradient(135deg,#10b981,#059669);color:white;box-shadow:0 2px 8px rgba(16,185,129,.25)}
+.pb.pd{background:linear-gradient(135deg,#ef4444,#dc2626);color:white}
+.pb.pse{background:linear-gradient(135deg,#64748b,#475569);color:white}
+.pb.pw{background:linear-gradient(135deg,#f59e0b,#d97706);color:white}
+
+/* status badge */
+.pbadge{display:inline-block;padding:3px 10px;border-radius:18px;font-size:.64rem;font-weight:700;font-family:'DM Mono',monospace}
+.pbadge.d{background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3)}
+.pbadge.p{background:rgba(59,130,246,.15);color:#1d4ed8;border:1px solid rgba(59,130,246,.3)}
+.pbadge.ag{background:rgba(16,185,129,.15);color:#065f46;border:1px solid rgba(16,185,129,.3)}
+.pbadge.c{background:rgba(109,40,217,.15);color:#5b21b6;border:1px solid rgba(109,40,217,.3)}
+.pbadge.ar{background:rgba(100,116,139,.15);color:#475569;border:1px solid rgba(100,116,139,.3)}
+
+/* strips, boxes, callouts */
+.pas{display:flex;gap:12px;flex-wrap:wrap;padding:9px 12px;background:#f8faff;border:1px solid #c7d2fe;border-radius:7px;margin-bottom:11px}
+.pasi{display:flex;flex-direction:column;gap:2px}
+.pasl{font-size:.56rem;font-weight:600;color:#6366f1;text-transform:uppercase;letter-spacing:.05em}
+.pasv{font-size:.7rem;font-weight:600;color:var(--p-text)}
+
+.peb{background:#f0f9ff;border:1px solid #bfdbfe;border-radius:7px;padding:11px 13px;margin-bottom:11px}
+.pebt{font-size:.68rem;font-weight:700;color:#1e40af;margin-bottom:7px;display:flex;align-items:center;gap:5px}
+
+.pcl{display:flex;flex-direction:column;gap:5px;margin-bottom:11px}
+.pci{display:flex;align-items:center;gap:7px;padding:7px 11px;background:white;border:1px solid var(--p-border);border-radius:5px;font-size:.68rem;color:var(--p-text)}
+.pci.ck{background:#f0fdf4;border-color:#86efac;color:#166534}
+
+.pvi{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.pag2{display:flex;align-items:flex-start;gap:9px;padding:11px 13px;background:#f0f9ff;border:1.5px solid #bfdbfe;border-radius:7px;margin-bottom:11px;font-size:.71rem;line-height:1.55;color:#1e40af}
+.pag2chk{width:15px;height:15px;border-radius:3px;border:2px solid #3b82f6;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:white;font-size:.56rem}
+
+.pco{display:flex;gap:7px;align-items:flex-start;padding:9px 11px;border-radius:5px;font-size:.68rem;line-height:1.55;margin-bottom:9px}
+.pco.inf{background:#f0f9ff;border-left:3px solid #3b82f6;color:#1e40af}
+.pco.wa{background:#fffbeb;border-left:3px solid #f59e0b;color:#92400e}
+
+/* annotation ring */
+.pan{position:relative;display:inline-block;width:100%}
+.pring{outline:2.5px solid #ef4444;outline-offset:3px;border-radius:5px;animation:rp 1.9s infinite}
+@keyframes rp{0%,100%{outline-color:#ef4444;outline-offset:3px}50%{outline-color:#f97316;outline-offset:5px}}
+.pannl{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);background:#ef4444;color:white;font-size:.58rem;font-weight:700;padding:3px 7px;border-radius:3px;white-space:nowrap;z-index:10;font-family:'DM Mono',monospace}
+.pannl::before{content:'←';margin-right:3px}
+
+/* mockup caption bar */
+.mcap{background:var(--ink);color:rgba(245,243,238,.6);padding:7px 16px;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;display:flex;align-items:center;justify-content:space-between}
+
+/* email mockup */
+.em{background:white;font-family:'Sora',sans-serif;font-size:.73rem;color:#333}
+.emh{background:linear-gradient(135deg,#3b6cf4,#6d28d9);padding:18px 20px;color:white;text-align:center}
+.emh h3{font-size:.9rem;font-weight:700;margin-bottom:3px}
+.emh p{font-size:.66rem;opacity:.85}
+.emb{padding:16px 20px}
+.emt{width:100%;border-collapse:collapse;margin:11px 0;font-size:.69rem}
+.emt th{background:#f2f2f2;padding:6px 9px;text-align:left;width:40%;font-weight:600;border-bottom:1px solid #ddd}
+.emt td{padding:6px 9px;border-bottom:1px solid #ddd}
+.embtn{display:block;margin:14px auto;background:var(--p-grad);color:white;padding:10px 24px;border-radius:8px;text-align:center;font-weight:700;font-size:.75rem;width:fit-content}
+.emnt{font-size:.64rem;color:#6b7280;text-align:center;margin-top:8px}
+
+/* table mockup */
+.ptbl{width:100%;border-collapse:collapse;font-size:.67rem}
+.ptbl th{background:var(--p-sidebar);color:#c8d0e0;padding:7px 10px;text-align:left;font-weight:600;font-size:.6rem;text-transform:uppercase;letter-spacing:.05em}
+.ptbl td{padding:7px 10px;border-bottom:1px solid var(--p-border);color:var(--p-text);vertical-align:middle}
+.ptbl tr.ar2 td{background:#f0f9ff}
+
+/* TIPS */
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:64px}
+.tip{background:#fff;border:1.5px solid var(--ink);border-radius:6px;box-shadow:var(--shadow);padding:18px 20px}
+.tip-ico{font-size:1.45rem;margin-bottom:8px}
+.tip h4{font-size:.9rem;font-weight:700;margin-bottom:5px}
+.tip p{font-size:.82rem;line-height:1.65;color:rgba(15,17,23,.62)}
+
+/* QUICK REF */
+.qr{background:#fff;border:1.5px solid var(--ink);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:64px}
+.qrh{display:grid;grid-template-columns:118px 1fr 1fr;background:var(--ink);color:var(--paper);padding:10px 18px;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+.qrr{display:grid;grid-template-columns:118px 1fr 1fr;padding:12px 18px;border-bottom:1px solid var(--cream);align-items:center;gap:8px}
+.qrr:last-child{border-bottom:none}
+.qrr span{font-size:.86rem;color:rgba(15,17,23,.72)}
+.qrr b{font-size:.84rem}
+
+footer{text-align:center;padding:26px;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(15,17,23,.32);border-top:1px solid var(--line)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fs{animation:fadeUp .48s ease both}
+.fs:nth-child(1){animation-delay:.05s}.fs:nth-child(2){animation-delay:.11s}.fs:nth-child(3){animation-delay:.17s}.fs:nth-child(4){animation-delay:.23s}.fs:nth-child(5){animation-delay:.29s}
+
+@media(max-width:640px){
+  header{padding:36px 22px 30px}
+  main{padding:36px 18px 56px}
+  .fs{grid-template-columns:38px 1fr;gap:0 13px}
+  .sn{width:38px;height:38px;font-size:.85rem}
+  .ps{display:none}
+  .pfg,.pfg.c3,.pvi,.pag{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">📋 Internal Guide</div>
+  <h1>How the <span>Laptop/Desktop Agreement</span> Portal Works</h1>
+  <p>A visual, step-by-step guide — includes screen mockups of exactly what you'll see at each stage.</p>
+</header>
+
+<main>
+
+<div class="personas">
+  <div class="persona admin"><div class="pdot"></div> IT Administrator</div>
+  <div class="persona emp"><div class="pdot"></div> Employee (Recipient)</div>
+</div>
+
+<!-- ROLES -->
+<div class="sec-lbl">Roles at a glance</div>
+<div class="sec-title">Two people, one agreement</div>
+<div class="roles-grid">
+  <div class="rc admin">
+    <div class="rc-h">🖥️ IT Administrator</div>
+    <div class="rc-b">
+      <div class="ri"><span>📝</span>Creates the agreement and fills in laptop/desktop details</div>
+      <div class="ri"><span>📧</span>Enters the employee's email and sends the signing link</div>
+      <div class="ri"><span>🔍</span>Physically inspects the device after the employee signs</div>
+      <div class="ri"><span>✅</span>Marks the agreement as Completed</div>
+      <div class="ri"><span>✏️</span>Can edit hardware fields at any status — every save notifies</div>
+      <div class="ri"><span>🗂️</span>Can archive or reject agreements at any time</div>
+    </div>
+  </div>
+  <div class="rc emp">
+    <div class="rc-h">👤 Employee</div>
+    <div class="rc-b">
+      <div class="ri"><span>📬</span>Receives an email with a personal signing link</div>
+      <div class="ri"><span>✍️</span>Fills in their name, employee ID, position, and selects department</div>
+      <div class="ri"><span>👀</span>Reviews the laptop/desktop details and agrees to the terms</div>
+      <div class="ri"><span>📩</span>Receives a confirmation email after signing</div>
+      <div class="ri"><span>🔒</span>Link is personal — only they can sign it</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATUS FLOW -->
+<div class="sf">
+  <h3>Agreement Status Journey</h3>
+  <div class="sfr">
+    <div class="sfn"><div class="sfb d">DRAFT</div><div class="sfl">IT creates</div></div>
+    <div class="sfa"><div class="sfal"></div><div class="sfat">Submit</div></div>
+    <div class="sfn"><div class="sfb p">PENDING</div><div class="sfl">Awaiting employee</div></div>
+    <div class="sfa"><div class="sfal"></div><div class="sfat">Employee signs</div></div>
+    <div class="sfn"><div class="sfb ag">AGREED</div><div class="sfl">Awaiting IT verify</div></div>
+    <div class="sfa"><div class="sfal"></div><div class="sfat">IT verifies</div></div>
+    <div class="sfn"><div class="sfb c">COMPLETED</div><div class="sfl">All done ✓</div></div>
+  </div>
+  <div class="sf-br">
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(245,243,238,.28);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Other paths</div>
+    <div class="sf-bi"><span>↩</span> IT rejects from AGREED → back to PENDING (new signing link auto-sent)</div>
+    <div class="sf-bi"><span>📦</span> Any status can be ARCHIVED by IT (written reason required)</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="sec-lbl">Step by step</div>
+<div class="sec-title">The full agreement journey</div>
+
+<div class="flow">
+
+<!-- STEP 1 -->
+<div class="fs">
+  <div class="snc"><div class="sn a">1</div><div class="sln"></div></div>
+  <div class="sb">
+    <div class="sw a">IT Administrator</div>
+    <div class="sh"><div class="st">Create a new agreement</div><span class="pill d">Draft</span></div>
+    <p class="sd">Log in to the portal and click <strong>New Agreement</strong> from the sidebar. You'll land on <strong>Phase 1 — Raise Agreement</strong>. Fill in all laptop/desktop details and the employee's email address. Nothing is sent to the employee until you click <strong>Submit</strong>.</p>
+    <ul class="sl">
+      <li>Select the device model from the dropdown (or type a new one if not listed)</li>
+      <li>Enter the serial number from the label on the physical device</li>
+      <li>Tick which accessories are included — carry bag, power adapter, mouse, VGA converter</li>
+      <li>Enter the employee's email address (the signing link will be sent here)</li>
+      <li>Optionally add the HOD email to keep the Head of Department in the loop</li>
+      <li>Asset number is <strong>not entered here</strong> — it will be filled in Phase 3 (IT Verification), obtained from Finance for new devices</li>
+    </ul>
+
+    <div class="mt">
+      <div class="mt-ico">🖥️</div>
+      <span class="mt-txt">🖥️ Screen Preview —  Phase 1</span>
+      
+    </div>
+    <div class="mw">
+      <div class="mcap"><span>Agreement.aspx — Phase 1: Raise Agreement &nbsp;(IT Admin view)</span><span class="pill d">Draft</span></div>
+      <div class="portal">
+        <div class="ps">
+          <div class="ps-logo"><div class="ps-logo-ico">💻</div><div class="ps-logo-txt">Laptop/Desktop<br>Agreement</div></div>
+          <div class="pni"><span class="ni">🏠</span>Dashboard</div>
+          <div class="pni act"><span class="ni">📝</span>New Agreement</div>
+          <div class="pni"><span class="ni">📋</span>Agreements</div>
+          <div class="ps-sep"></div>
+          <div class="pni"><span class="ni">👥</span>Users</div>
+          <div class="pni"><span class="ni">📊</span>Reports</div>
+        </div>
+        <div class="pm">
+          <div class="ptb"><div class="ptb-t">New Laptop/Desktop Agreement</div><div class="ptb-u"><div class="pav">IT</div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3059441e51545d595e70535f5d40515e491e535f5d">[email&#160;protected]</a></span></div></div>
+          <div class="pc">
+            <div class="pph"><h2>Laptop/Desktop Agreement</h2><p>Complete all required fields and submit to send signing link to employee</p><div class="agn">AGR-2025-0042 &nbsp;·&nbsp; <span class="pbadge d">Draft</span></div></div>
+            <div class="ppc ph-raise">
+              <div class="pph2">
+                <div class="ppb"><span class="pn">Phase</span><span class="pi">1️⃣</span></div>
+                <div><div class="ppt">Raise Agreement</div><div class="pps">IT admin fills in laptop/desktop details and submits to employee</div></div>
+              </div>
+              <div class="pcon">
+                <div class="psh"><div class="psi bl">💻</div><div><div class="psit">Laptop/Desktop Details</div><div class="psis">Enter device specifications</div></div></div>
+                <div class="pfg" style="margin-bottom:11px">
+                  <div class="pf"><div class="pl">Model <span class="req">*</span></div><select class="psel fi"><option>Dell Latitude 5540</option></select></div>
+                  <div class="pf"><div class="pl">Serial Number <span class="req">*</span></div><input class="pi2 fi" value="DL5540-SN29471"></div>
+
+                  <div class="pf"><div class="pl">IT Staff</div><input class="pi2 ro" value="DOMAIN\it.admin" readonly></div>
+                  <div class="pf"><div class="pl">Issue Date</div><input class="pi2 fi" value="11/06/2025"></div>
+                  <div class="pf"><div class="pl">Remarks</div><input class="pi2" placeholder="Optional remarks"></div>
+                </div>
+                <div class="psh" style="margin-top:10px"><div class="psi bl">🎒</div><div><div class="psit">Accessories Included</div><div class="psis">Tick all items packed with the device</div></div></div>
+                <div class="pag">
+                  <div class="pai ck"><div class="pchk ck">✓</div>Carry Bag</div>
+                  <div class="pai ck"><div class="pchk ck">✓</div>Power Adapter</div>
+                  <div class="pai ck"><div class="pchk ck">✓</div>Mouse (Wireless)</div>
+                  <div class="pai"><div class="pchk"></div>VGA Converter</div>
+                </div>
+                <div class="psh" style="margin-top:12px"><div class="psi bl">📧</div><div><div class="psit">Employee &amp; HOD Email</div><div class="psis">Signing link will be sent to the employee email</div></div></div>
+                <div class="pfg">
+                  <div class="pf pan">
+                    <div class="pl">Employee Email <span class="req">*</span></div>
+                    <input class="pi2 fi pring" value="john.doe@company.com">
+                    <div class="pannl">IT admin enters this</div>
+                  </div>
+                  <div class="pf"><div class="pl">HOD Email</div><input class="pi2 fi" value="hod.dept@company.com"></div>
+                </div>
+                <div class="pco inf" style="margin-top:9px">ℹ️ &nbsp;Employee name, employee ID, position, and department are filled by the employee in Phase 2. Asset Number is entered by IT admin in Phase 3.</div>
+                <div class="pbr">
+                  <button class="pb pse">Save Draft</button>
+                  <button class="pb pr">Submit Agreement &amp; Send Email →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sft">
+      <span class="fbl">Saved as</span><span class="pill d">Draft</span>
+      <span class="fbl">→ Submit changes to</span><span class="pill p">Pending</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="fs">
+  <div class="snc"><div class="sn a" style="font-size:.75rem">📧</div><div class="sln"></div></div>
+  <div class="sb">
+    <div class="sw sys">System (Auto)</div>
+    <div class="sh"><div class="st">System sends signing email to employee</div><span class="pill p">Pending</span></div>
+    <p class="sd">The moment you click <strong>Submit Agreement</strong>, the portal automatically generates a unique, secure signing link and sends it to the employee's email. You don't need to do anything — just wait for the employee to sign.</p>
+    <div class="ec"><div class="ico">📧</div><div><strong>Email sent automatically to:</strong> Employee (To) &nbsp;+&nbsp; HOD (CC) &nbsp;+&nbsp; IT Admins with notifications enabled (CC)<br>The link is personal and expires in <strong>7 days</strong>. If it expires, open the agreement from Existing Agreements and resend.</div></div>
+
+    <div class="mt">
+      <div class="mt-ico">📧</div>
+      <span class="mt-txt">🖥️ Screen Preview —  the employee's email</span>
+      
+    </div>
+    <div class="mw">
+      <div class="mcap"><span>Email received by employee — contains personal signing link</span><span class="pill p">Pending</span></div>
+      <div class="em">
+        <div class="emh"><h3>Laptop/Desktop Agreement Notification</h3><p>Action Required — Please review and sign your agreement</p></div>
+        <div class="emb">
+          <p style="margin-bottom:10px">Dear <strong>John Doe</strong>,</p>
+          <p style="margin-bottom:12px;font-size:.72rem;line-height:1.65;color:#444">The IT department has prepared a Laptop/Desktop Agreement for you. Please review the details below and click the button to sign.</p>
+          <table class="emt">
+            <tr><th>Agreement Number:</th><td><strong>AGR-2025-0042</strong></td></tr>
+            <tr><th>Status:</th><td><span class="pbadge p">Pending Your Signature</span></td></tr>
+            <tr><th>Device Model:</th><td>Dell Latitude 5540</td></tr>
+            <tr><th>Serial Number:</th><td style="font-family:'DM Mono',monospace">DL5540-SN29471</td></tr>
+            <tr><th>Accessories:</th><td>Carry Bag, Power Adapter, Mouse</td></tr>
+            <tr><th>IT Staff:</th><td>DOMAIN\it.admin</td></tr>
+          </table>
+          <a class="embtn">✍️ &nbsp; Sign Agreement Now</a>
+          <p class="emnt">⏰ This link expires in 7 days &nbsp;·&nbsp; 🔒 This link is personal — please do not share it</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sft">
+      <span class="fbl">Status is now</span><span class="pill p">Pending</span>
+      <span class="fbl">— waiting for employee to sign</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="fs">
+  <div class="snc"><div class="sn e">3</div><div class="sln"></div></div>
+  <div class="sb">
+    <div class="sw e">Employee</div>
+    <div class="sh"><div class="st">Employee reviews and signs</div><span class="pill ag">Agreed</span></div>
+    <p class="sd">The employee clicks the button in their email and lands on <strong>Phase 2 — Employee Agreement</strong>. They fill in their own personal details, read the laptop/desktop summary, tick the agreement checkbox, and click <strong>Submit</strong>.</p>
+    <ul class="sl chk">
+      <li>The link only works for you — if anyone else opens it, access will be denied</li>
+      <li>Fill in your <strong>Full Name, Employee ID, Position/Job Title</strong> — these are saved to the signed agreement</li>
+      <li>Select your <strong>Department</strong> from the dropdown list</li>
+      <li>Your Windows ID is auto-filled and cannot be changed</li>
+      <li>Review the device and accessories listed by IT admin — they are read-only</li>
+      <li>Tick the "I agree" checkbox and click Submit to complete your part</li>
+    </ul>
+
+    <div class="mt">
+      <div class="mt-ico">✍️</div>
+      <span class="mt-txt">🖥️ Screen Preview —  Phase 2</span>
+      
+    </div>
+    <div class="mw">
+      <div class="mcap"><span>Agreement.aspx — Phase 2: Employee Agreement &nbsp;(Employee view via email link)</span><span class="pill p">Pending</span></div>
+      <div class="portal">
+        <div class="ps">
+          <div class="ps-logo"><div class="ps-logo-ico">💻</div><div class="ps-logo-txt">Laptop/Desktop<br>Agreement</div></div>
+          <div class="pni act"><span class="ni">👤</span>My Agreement</div>
+        </div>
+        <div class="pm">
+          <div class="ptb"><div class="ptb-t">Laptop/Desktop Agreement — Signature Required</div><div class="ptb-u"><div class="pav" style="background:linear-gradient(135deg,#10b981,#059669)">EMP</div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="acc6c3c4c282c8c3c9eccfc3c1dccdc2d582cfc3c1">[email&#160;protected]</a></span></div></div>
+          <div class="pc">
+            <div class="pph"><h2>Laptop/Desktop Agreement</h2><p>Please review the details below and sign to confirm receipt of the device</p><div class="agn">AGR-2025-0042 &nbsp;·&nbsp; <span class="pbadge p">Pending Your Signature</span></div></div>
+            <!-- agreement strip -->
+            <div class="pas">
+              <div class="pasi"><div class="pasl">Model</div><div class="pasv">Dell Latitude 5540</div></div>
+              <div class="pasi"><div class="pasl">Serial No.</div><div class="pasv" style="font-family:'DM Mono',monospace;font-size:.65rem">DL5540-SN29471</div></div>
+              <div class="pasi"><div class="pasl">Accessories</div><div class="pasv">Bag · Adapter · Mouse</div></div>
+              <div class="pasi"><div class="pasl">IT Staff</div><div class="pasv">it.admin</div></div>
+            </div>
+            <div class="ppc ph-agree">
+              <div class="pph2">
+                <div class="ppb"><span class="pn">Phase</span><span class="pi">2️⃣</span></div>
+                <div><div class="ppt">Employee Agreement</div><div class="pps">Fill in your details, review the agreement, and sign below</div></div>
+              </div>
+              <div class="pcon">
+                <div class="peb">
+                  <div class="pebt">👤 Your Personal Details — fill in all fields below</div>
+                  <div class="pfg">
+                    <div class="pf pan">
+                      <div class="pl">Employee Name <span class="req">*</span></div>
+                      <input class="pi2 pring" placeholder="Enter your full name">
+                      <div class="pannl">You fill this in</div>
+                    </div>
+                    <div class="pf pan">
+                      <div class="pl">Employee ID <span class="req">*</span></div>
+                      <input class="pi2 pring" placeholder="Enter your employee/staff ID">
+                      <div class="pannl">You fill this in</div>
+                    </div>
+                    <div class="pf"><div class="pl">Employee ID (Windows ID)</div><input class="pi2 ro" value="PANCENTURY\john.doe" readonly></div>
+                    <div class="pf pan">
+                      <div class="pl">Position / Job Title <span class="req">*</span></div>
+                      <input class="pi2 pring" placeholder="Enter your job title">
+                      <div class="pannl">You fill this in</div>
+                    </div>
+                    <div class="pf pan" style="grid-column:1/-1">
+                      <div class="pl">Department <span class="req">*</span></div>
+                      <select class="psel pring"><option>-- Select Department --</option></select>
+                      <div class="pannl">Select from list</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pag2">
+                  <div class="pag2chk">✓</div>
+                  <div>I have read, understood, and agree to all the terms and conditions stated above</div>
+                </div>
+                <div class="pbr">
+                  <button class="pb ps2">✍️ &nbsp; Submit &amp; Sign Agreement</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ec"><div class="ico">📩</div><div><strong>After signing:</strong> IT Admins with notifications enabled receive the verification request email (To). Employee and HOD are CC'd for visibility.</div></div>
+    <div class="sft"><span class="fbl">Status changes to</span><span class="pill ag">Agreed</span></div>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="fs">
+  <div class="snc"><div class="sn a">4</div><div class="sln"></div></div>
+  <div class="sb">
+    <div class="sw a">IT Administrator</div>
+    <div class="sh"><div class="st">Verify device &amp; complete the agreement</div><span class="pill ag">Agreed → Completed</span></div>
+    <p class="sd">You'll receive an email that the employee has signed. Open the agreement from <strong>Existing Agreements</strong> (filter by <em>Agreed</em>). Scroll down to <strong>Phase 3 — IT Verification</strong>. Physically check the device, enter the Asset Number, tick the checklist, and click <strong>Complete Agreement</strong>.</p>
+    <ul class="sl">
+      <li>Go to <strong>Existing Agreements</strong> → click the <em>Agreed</em> filter card to find it quickly</li>
+      <li>Confirm the employee's name and department match the person in front of you</li>
+      <li>Check the serial number on the physical device matches what is on the agreement</li>
+      <li>Enter the <strong>Asset Number</strong> — get this from Finance for new devices. This is mandatory to complete the agreement</li>
+      <li>Tick both verification checkboxes and click <strong>Complete Agreement</strong></li>
+    </ul>
+
+    <div class="bb">
+      <h4>⚠️ What if something is wrong?</h4>
+      <div class="brs">
+        <div class="br"><div class="brl" style="color:var(--warn)">↩ Reject Agreement</div>Status goes back to <span class="pill p">Pending</span>. A fresh signing link is automatically emailed to the employee so they can re-sign after corrections are made.</div>
+        <div class="br"><div class="brl" style="color:#555">📦 Archive Agreement</div>Used when the agreement is no longer needed (device returned, employee left, etc.). You must type a reason — it is saved permanently to the record.</div>
+      </div>
+    </div>
+
+    <div class="mt">
+      <div class="mt-ico">🔍</div>
+      <span class="mt-txt">🖥️ Screen Preview —  Phase 3</span>
+      
+    </div>
+    <div class="mw">
+      <div class="mcap"><span>Agreement.aspx — Phase 3: IT Verification &nbsp;(IT Admin view)</span><span class="pill ag">Agreed</span></div>
+      <div class="portal">
+        <div class="ps">
+          <div class="ps-logo"><div class="ps-logo-ico">💻</div><div class="ps-logo-txt">Laptop/Desktop<br>Agreement</div></div>
+          <div class="pni"><span class="ni">🏠</span>Dashboard</div>
+          <div class="pni act"><span class="ni">📋</span>Agreements</div>
+          <div class="pni"><span class="ni">👥</span>Users</div>
+          <div class="pni"><span class="ni">📊</span>Reports</div>
+        </div>
+        <div class="pm">
+          <div class="ptb"><div class="ptb-t">AGR-2025-0042 — IT Verification Required</div><div class="ptb-u"><div class="pav">IT</div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="462f326827222b2f280625292b3627283f6825292b">[email&#160;protected]</a></span></div></div>
+          <div class="pc">
+            <div class="pph"><h2>Laptop/Desktop Agreement</h2><p>Employee has signed — verify the device and complete</p><div class="agn">AGR-2025-0042 &nbsp;·&nbsp; <span class="pbadge ag">Agreed</span></div></div>
+            <div class="pas">
+              <div class="pasi"><div class="pasl">Employee</div><div class="pasv">John Doe</div></div>
+              <div class="pasi"><div class="pasl">Position</div><div class="pasv">Software Engineer</div></div>
+              <div class="pasi"><div class="pasl">Department</div><div class="pasv">IT Development</div></div>
+              <div class="pasi"><div class="pasl">Signed On</div><div class="pasv">11/06/2025 09:14</div></div>
+            </div>
+            <div class="ppc ph-verify">
+              <div class="pph2">
+                <div class="ppb"><span class="pn">Phase</span><span class="pi">3️⃣</span></div>
+                <div><div class="ppt">IT Verification</div><div class="pps">Verify device physically, enter asset number, and complete</div></div>
+              </div>
+              <div class="pcon">
+                <div class="psh"><div class="psi am">👤</div><div><div class="psit">Employee Signature Summary</div><div class="psis">Read-only — filled in by employee in Phase 2</div></div></div>
+                <div class="pvi">
+                  <div class="pf"><div class="pl">Employee Name</div><input class="pi2 ro" value="John Doe" readonly></div>
+                  <div class="pf"><div class="pl">Employee ID</div><input class="pi2 ro" value="IT006" readonly></div>
+                  <div class="pf"><div class="pl">Windows ID</div><input class="pi2 ro" value="PANCENTURY\john.doe" readonly></div>
+                  <div class="pf"><div class="pl">Position</div><input class="pi2 ro" value="Software Engineer" readonly></div>
+                  <div class="pf"><div class="pl">Department</div><input class="pi2 ro" value="Information Technology" readonly></div>
+                </div>
+                <div class="psh" style="margin-top:10px"><div class="psi am">✅</div><div><div class="psit">Verification Checklist</div><div class="psis">Tick to confirm each item is checked</div></div></div>
+                <div class="pcl">
+                  <div class="pci ck"><div class="pchk ck">✓</div>Laptop/Desktop serial number matches — device physically verified</div>
+                  <div class="pci ck"><div class="pchk ck">✓</div>System configuration checked and in order</div>
+                </div>
+                <div class="pfg">
+                  <div class="pf pan">
+                    <div class="pl">Asset Number <span class="req">*</span> <span style="font-size:.58rem;color:var(--warn)">(mandatory — get from Finance)</span></div>
+                    <input class="pi2 hi pring" placeholder="Get from finance for new device" value="">
+                    <div class="pannl">Get from finance for new device</div>
+                  </div>
+                  <div class="pf"><div class="pl">Verified By</div><input class="pi2 ro" value="DOMAIN\it.admin" readonly></div>
+                  <div class="pf"><div class="pl">Verified Date</div><input class="pi2 ro" value="11/06/2025 10:32" readonly></div>
+                </div>
+                <div class="pbr">
+                  <button class="pb ps2">✅ Complete Agreement</button>
+                  <button class="pb pd">↩ Reject</button>
+                  <button class="pb pse">📦 Archive</button>
+                  <button class="pb pw">📄 Export PDF</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sft"><span class="fbl">Status changes to</span><span class="pill c">Completed</span></div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="fs">
+  <div class="snc"><div class="sn dn">✓</div></div>
+  <div class="sb" style="border-color:var(--done);box-shadow:2px 2px 0 var(--done)">
+    <div class="sw" style="background:var(--done-l);color:var(--done)">All Done</div>
+    <div class="sh"><div class="st">Agreement Completed — record kept permanently</div><span class="pill c">Completed</span></div>
+    <p class="sd">The agreement is fully signed and verified. A confirmation email is sent to the employee automatically. The record lives permanently in the portal and can be viewed or exported by IT admins at any time.</p>
+    <ul class="sl chk">
+      <li>Employee receives a "Your agreement is now complete" confirmation email</li>
+      <li>Agreement visible in <em>Existing Agreements</em> — filter by <strong>Completed</strong></li>
+      <li>Click <strong>Export PDF</strong> to download the full signed agreement as a PDF</li>
+      <li>No further action needed from anyone</li>
+    </ul>
+
+    <div class="mt">
+      <div class="mt-ico">📋</div>
+      <span class="mt-txt">🖥️ Screen Preview —  the Existing Agreements list</span>
+      
+    </div>
+    <div class="mw">
+      <div class="mcap"><span>ExistingAgreements.aspx — Agreement list with status cards &nbsp;(IT Admin view)</span><span class="pill c">Completed</span></div>
+      <div class="portal" style="min-height:350px">
+        <div class="ps">
+          <div class="ps-logo"><div class="ps-logo-ico">💻</div><div class="ps-logo-txt">Laptop/Desktop<br>Agreement</div></div>
+          <div class="pni"><span class="ni">🏠</span>Dashboard</div>
+          <div class="pni"><span class="ni">📝</span>New Agreement</div>
+          <div class="pni act"><span class="ni">📋</span>Agreements</div>
+          <div class="ps-sep"></div>
+          <div class="pni"><span class="ni">👥</span>Users</div>
+          <div class="pni"><span class="ni">📊</span>Reports</div>
+        </div>
+        <div class="pm">
+          <div class="ptb"><div class="ptb-t">Existing Agreements</div><div class="ptb-u"><div class="pav">IT</div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dab3aef4bbbeb7b3b49ab9b5b7aabbb4a3f4b9b5b7">[email&#160;protected]</a></span></div></div>
+          <div class="pc">
+            <!-- stat cards -->
+            <div style="display:flex;gap:9px;margin-bottom:12px;flex-wrap:wrap">
+              <div style="background:#fff;border:1px solid var(--p-border);border-radius:7px;padding:9px 14px;flex:1;min-width:75px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:var(--p-text)">12</div><div style="font-size:.58rem;color:var(--p-sub);text-transform:uppercase;letter-spacing:.05em">All</div></div>
+              <div style="background:#fff;border:1px solid var(--p-border);border-radius:7px;padding:9px 14px;flex:1;min-width:75px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:#8a6500">3</div><div style="font-size:.58rem;color:var(--p-sub);text-transform:uppercase;letter-spacing:.05em">Draft</div></div>
+              <div style="background:#fff;border:1px solid var(--p-border);border-radius:7px;padding:9px 14px;flex:1;min-width:75px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:#1d4ed8">2</div><div style="font-size:.58rem;color:var(--p-sub);text-transform:uppercase;letter-spacing:.05em">Pending</div></div>
+              <div style="background:#fff;border:1px solid var(--p-border);border-radius:7px;padding:9px 14px;flex:1;min-width:75px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:#065f46">1</div><div style="font-size:.58rem;color:var(--p-sub);text-transform:uppercase;letter-spacing:.05em">Agreed</div></div>
+              <div style="background:var(--done-l);border:1.5px solid var(--done);border-radius:7px;padding:9px 14px;flex:1;min-width:75px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:var(--done)">6</div><div style="font-size:.58rem;color:var(--done);text-transform:uppercase;letter-spacing:.05em;font-weight:700">Completed</div></div>
+            </div>
+            <div style="background:white;border-radius:7px;overflow:hidden;border:1px solid var(--p-border)">
+              <table class="ptbl">
+                <thead><tr><th>Agreement #</th><th>Employee Email</th><th>Model</th><th>Serial No.</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody>
+                  <tr class="ar2">
+                    <td><strong>AGR-2025-0042</strong></td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93f9fcfbfdbdf7fcf6d3f0fcfee3f2fdeabdf0fcfe">[email&#160;protected]</a></td>
+                    <td>Dell Latitude 5540</td>
+                    <td style="font-family:'DM Mono',monospace;font-size:.62rem">DL5540-SN29471</td>
+                    <td><span class="pbadge c">Completed</span></td>
+                    <td><button class="pb pr" style="padding:3px 9px;font-size:.61rem">View</button> <button class="pb pse" style="padding:3px 9px;font-size:.61rem">PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td>AGR-2025-0041</td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="305a515e551e435d59445870535f5d40515e491e535f5d">[email&#160;protected]</a></td>
+                    <td>HP EliteBook 840</td>
+                    <td style="font-family:'DM Mono',monospace;font-size:.62rem">HP840-SN11023</td>
+                    <td><span class="pbadge ag">Agreed</span></td>
+                    <td><button class="pb pw" style="padding:3px 9px;font-size:.61rem">Verify</button></td>
+                  </tr>
+                  <tr>
+                    <td>AGR-2025-0040</td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfaea3a6acaae1b8a0a1a88faca0a2bfaea1b6e1aca0a2">[email&#160;protected]</a></td>
+                    <td>Lenovo ThinkPad X1</td>
+                    <td style="font-family:'DM Mono',monospace;font-size:.62rem">TP-SN88741</td>
+                    <td><span class="pbadge p">Pending</span></td>
+                    <td><button class="pb pse" style="padding:3px 9px;font-size:.61rem">View</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sft"><span class="fbl">Final status</span><span class="pill c">Completed</span><span class="fbl">— record kept permanently</span></div>
+  </div>
+</div>
+
+</div><!-- /flow -->
+
+<!-- TIPS -->
+<div class="sec-lbl">Good to know</div>
+<div class="sec-title">Helpful tips</div>
+<div class="tg">
+  <div class="tip"><div class="tip-ico">⏰</div><h4>Signing link expires in 7 days</h4><p>If the employee misses the deadline, go to Existing Agreements → open the agreement → click Resend to generate a fresh link.</p></div>
+  <div class="tip"><div class="tip-ico">🔒</div><h4>Links are personal and secure</h4><p>The signing link only works for the specific employee it was sent to. Forwarding the email will not let anyone else sign on their behalf.</p></div>
+  <div class="tip"><div class="tip-ico">🖨️</div><h4>PDF available at any stage</h4><p>IT admins can export a full PDF at any time — including archived agreements. It captures all phases, signatures, dates, and device details.</p></div>
+  <div class="tip"><div class="tip-ico">📦</div><h4>Archiving requires a reason</h4><p>To archive an agreement, IT admin must type a written reason. This is saved permanently to the record so there's always an audit trail.</p></div>
+  <div class="tip"><div class="tip-ico">👁️</div><h4>Employees can view their own agreements</h4><p>Employees can log into the portal and see the status of their own agreements. They will only ever see their own records — never others'.</p></div>
+  <div class="tip"><div class="tip-ico">🔄</div><h4>Rejection triggers a new signing link</h4><p>If IT admin rejects after signing (e.g. wrong details were entered), a brand-new signing link is automatically emailed to the employee.</p></div>
+  <div class="tip"><div class="tip-ico">✏️</div><h4>IT admins can edit hardware fields at any status</h4><p>IT admins can update hardware details (model, serial number, asset number, accessories) on any agreement — including Completed and Archived. Every save automatically sends a notification email.</p></div>
+  <div class="tip"><div class="tip-ico">🔕</div><h4>Email notification preference</h4><p>IT admins can opt out of system-wide email notifications in User Management. Admins with notifications off will only receive emails for agreements they personally created.</p></div>
+</div>
+
+<!-- QUICK REF -->
+<div class="sec-lbl">Quick reference</div>
+<div class="sec-title">Agreement statuses explained</div>
+<div class="qr">
+  <div class="qrh"><div>Status</div><div>What it means</div><div>Who acts next</div></div>
+  <div class="qrr"><span class="pill d">Draft</span><span>Agreement created but not yet sent to the employee</span><b style="color:var(--admin)">IT Admin submits</b></div>
