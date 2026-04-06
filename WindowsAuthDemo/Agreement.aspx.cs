@@ -640,7 +640,7 @@ namespace WindowsAuthDemo
                     SetFormReadOnly(false);  // Unlock Phase 1 hardware fields
                     btnAdminSaveNotify.Visible = true;
                     btnEdit.Visible = false;  // No Edit button for non-draft (admin Save replaces it)
-                    btnDelete.Visible = (currentStatus == "Pending"); // Archive only for Pending
+                    btnDelete.Visible = true; // IT admin can archive at any status
 
                     litHeaderTitle.Text = "Edit Acknowledgement Receipt";
                     litHeaderDescription.Text = "Edit acknowledgement receipt fields. Every save sends notification to relevant parties.";
@@ -654,7 +654,7 @@ namespace WindowsAuthDemo
                     pnlITVerification.Visible = true;
                     btnVerify.Visible = true;
                     btnReject.Visible = true;
-                    btnDelete.Visible = false;
+                    btnDelete.Visible = true; // IT admin can archive at any status
 
                     litHeaderTitle.Text = "Verify Laptop & Desktop Acknowledgement Receipt";
                     litHeaderDescription.Text = "Review employee acknowledgement and complete IT verification";
